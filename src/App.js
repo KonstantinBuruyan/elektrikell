@@ -8,12 +8,13 @@ import Head, {DEFAULT_ACTIVE_BUTTON} from "./Head"
 
 
 function App() {
-  const [activePrice, setActivePrice] = useState(DEFAULT_ACTIVE_BUTTON)
+    const [activePrice, setActivePrice] = useState(DEFAULT_ACTIVE_BUTTON);
+    const [tillMorning, setTillMorning] = useState(0);
   return (
   <Container>
     <Head activePrice={activePrice} setActivePrice={setActivePrice}/>
     <Body/>
-    <Footer/>
+          <Footer activePrice={activePrice} setActivePrice={setActivePrice} tillMorning={tillMorning} setTillMorning={setTillMorning}  style={{backgroundColor: "#f3f5fd"}}/>
   </Container>
   );
 }

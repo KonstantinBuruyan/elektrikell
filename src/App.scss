@@ -1,2 +1,52 @@
 /* The following line can be included in a src/App.scss */
 @import '~bootstrap/scss/bootstrap';
+
+.durations_title {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.durations-header {
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.durations {
+    max-width: 600px;
+    margin: 20px auto 5px;
+    font-size: 22px;
+    font-weight: 500;
+    position: relative;
+}
+
+.infoText.peak {
+    margin: 15px 20px !important;
+}
+
+.infoText.peak.p > b {
+    font-size: 46px;
+    font-weight: 700;
+    color: #1d1d1d;
+    line-height: 50px;
+    margin: 5px 0;
+}
+
+.infoText.peak > p {
+    font-size: 22px;
+}
+
+.peakHoursDescription {
+    margin: 10px 0 0;
+    font-size: 14px !important;
+    font-weight: 400;
+}
+
+.infoText {
+    text-align: center;
+    font-size: 18px;
+    color: #1d1d1d;
+    font-weight: 500;
+}
+
+
+
