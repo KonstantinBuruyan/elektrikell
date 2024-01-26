@@ -2,6 +2,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import TargetLow from './TargetLow';
 import TargetHigh from './TargetHigh';
+import { DEFAULT_ACTIVE_BUTTON } from "../Head";
 
 
 function Footer({ activePrice, setActivePrice, tillMorning, setTillMorning }) {
@@ -9,7 +10,7 @@ function Footer({ activePrice, setActivePrice, tillMorning, setTillMorning }) {
 
         <Row>
             {
-                activePrice === "low"
+                activePrice === DEFAULT_ACTIVE_BUTTON
                     ?
                     <Col><TargetLow tillMorning={tillMorning} setTillMorning={setTillMorning} /></Col>
                     :
