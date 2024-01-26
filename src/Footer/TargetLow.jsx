@@ -9,7 +9,7 @@ function TargetLow({tillMorning, setTillMorning }) {
     return (
         <>
             <Row className="durations">
-                <Col>
+                <Col style={{"textAlign":"center"}}>
                 <span className="durations_title">Tahan tarbida </span>
                     <Button active={tillMorning} onClick={() => setTillMorning(!tillMorning)} variant="secondary">enne hommikut</Button>
                 </Col>

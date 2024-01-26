@@ -14,7 +14,7 @@ function App() {
   <Container>
     <Head activePrice={activePrice} setActivePrice={setActivePrice}/>
     <Body/>
-          <Footer activePrice={activePrice} setActivePrice={setActivePrice} tillMorning={tillMorning} setTillMorning={setTillMorning}  style={{backgroundColor: "#f3f5fd"}}/>
+          <Footer activePrice={activePrice} tillMorning={tillMorning} setTillMorning={setTillMorning}  style={{backgroundColor: "#f3f5fd"}}/>
   </Container>
   );
 }
