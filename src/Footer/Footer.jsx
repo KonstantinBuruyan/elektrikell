@@ -5,21 +5,21 @@ import TargetHigh from './TargetHigh';
 import { DEFAULT_ACTIVE_BUTTON } from "../Head";
 
 
-function Footer({ activePrice, setActivePrice, tillMorning, setTillMorning }) {
-    return (<>
+function Footer({ activePrice, setActivePrice, tillMorning, setTillMorning, activeHour ,setActiveHour }) {
+    return (
 
         <Row>
             {
                 activePrice === DEFAULT_ACTIVE_BUTTON
                     ?
-                    <Col><TargetLow tillMorning={tillMorning} setTillMorning={setTillMorning} /></Col>
+                    <Col><TargetLow  activeHour={activeHour} setActiveHour={setActiveHour} tillMorning={tillMorning} setTillMorning={setTillMorning} /></Col>
                     :
                     <Col><TargetHigh /></Col>
 
             }
         </Row>
 
-    </>)
+    )
 }
 
 export default Footer;
