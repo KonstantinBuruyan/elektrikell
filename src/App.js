@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Body from "./Body"
 import Footer from "./Footer"
 import Head, { DEFAULT_ACTIVE_BUTTON, DATES } from "./Head"
+import LeftSideBar from "./LeftSideBar";
 
 
 function App() {
@@ -13,11 +14,16 @@ function App() {
     const [activeHour, setActiveHour] = useState();
     const [fromDate, setFromDate] = useState(DATES[0]);
     const [untilDate, setUntilDate] = useState(DATES[1]);
+    const [showSideBar, setShowSideBar] = useState(false);
+
+    const handleCloseSideBar = ()=> setShowSideBar(false);
+    const handleOpenSideBar = ()=> setShowSideBar(true);
   return (
     <Container>
-          <Head activePrice={activePrice} setActivePrice={setActivePrice} fromDate={fromDate} setFromDate={setFromDate} untilDate={untilDate} setUntilDate={setUntilDate} />
+          <Head activePrice={activePrice} setActivePrice={setActivePrice} fromDate={fromDate} setFromDate={setFromDate} untilDate={untilDate} setUntilDate={setUntilDate} handleClose={handleCloseSideBar} handleOpenSideBar={handleOpenSideBar}/>
       <Body activeHour={activeHour} />
       <Footer activeHour={activeHour} setActiveHour={setActiveHour} setActivePrice={setActivePrice} activePrice={activePrice} tillMorning={tillMorning} setTillMorning={setTillMorning} style={{ backgroundColor: "#f3f5fd" }} />
+      <LeftSideBar show={showSideBar} handleClose={handleCloseSideBar} fromDate={fromDate} setFromDate ={setFromDate} untilDate={untilDate} setUntilDate={setUntilDate}/>
     </Container>
   );
 }
