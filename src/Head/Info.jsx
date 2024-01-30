@@ -1,10 +1,22 @@
+import { useEffect, useState } from "react";
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { PRICE_BUTTONS, BADGES } from "./constants";
 import Badge from 'react-bootstrap/Badge';
+import { toCentKwhConvertor } from "../Utils";
+import { getCurrentPriceData } from "../services/apiService";
 
-function Info({ activePrice, setActivePrice,  }) {
+
+function Info({ activePrice, setActivePrice, }) {
+    const [currentPrice, setCurrentPrice] = useState(0);
+
+    useEffect(() => {
+        getCurrentPriceData().then(({ data }) => {
+            setCurrentPrice(toCentKwhConvertor(data[0].price));
+    }
+    );
+    }, []);
 
     return (<>
         <Col>
@@ -22,7 +34,7 @@ function Info({ activePrice, setActivePrice,  }) {
             </ButtonGroup>
         </Col>
         <Col className='text-end'>
-        <h2>XX.XX</h2>
+            <h2>{currentPrice}</h2>
         <div>cent / kilowatt-hour</div>
         </Col>
     </>);
