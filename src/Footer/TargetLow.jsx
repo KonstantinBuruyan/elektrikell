@@ -1,3 +1,4 @@
+
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
@@ -5,8 +6,11 @@ import "../App.scss";
 import Intervals from "./Intervals";
 
 
+
 function TargetLow(props) {
     const {tillMorning,setTillMorning} = props;
+
+   
     return (
         <>
             <Row className="durations">
@@ -19,7 +23,9 @@ function TargetLow(props) {
                 <Col><Intervals {...props} /></Col>
             </Row>
             <Row>
-                <Col></Col>
+                <Col>
+                
+                </Col>
             </Row>
         </>
     );
