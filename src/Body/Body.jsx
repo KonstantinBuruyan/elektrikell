@@ -7,22 +7,23 @@ import { chartDataConvertor  } from "../Utils";
 import {  currentTimeStamp  } from "../Utils/dates";
 
 
-function Body({from, until}) {
+function Body({ from, until, priceData, setPriceData }) {
    const renderDot = (line)=>{
     const {cx,
          cy,
          payload: {timestamp},
         } = line;
-const cxN=cx +20;
+       const cxN = cx + 18;
+       line.cx = cxN;
+       line.fill = "#8884d8";
+       line.stroke = "#8884d8";
+       line.r = 6;
+       line.strokeWidth = 2;
    return timestamp === currentTimeStamp() ? (
-    <Dot {...line}>
-        <div>
-
-        </div>
-    </Dot>
-   ) :null;
+       <Dot {...line}/>
+    ) :null;
 };
-    const [priceData, setPriceData ] = useState(null);
+   // const [priceData, setPriceData ] = useState(null);
 
     useEffect(()=> { getPriceData(from, until).then(({data})=> setPriceData(chartDataConvertor( data.ee)))},[from, until]);
     return (
@@ -34,7 +35,7 @@ const cxN=cx +20;
                     <XAxis dataKey="hour" interval={1}/>
                     <YAxis />
                     <Tooltip />
-                    <Line type="stepAfter" dataKey="price" stroke="#8884d8" dot={renderDot} />
+                    <Line type="stepAfter" dataKey="price"   stroke="#8884d8" strokeWidth="2" dot={renderDot} />
                     </LineChart>
                 </ResponsiveContainer>
             </Col>
