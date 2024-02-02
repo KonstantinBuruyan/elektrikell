@@ -2,6 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import { useEffect } from "react";
 import "../App.scss";
 import Intervals from "./Intervals";
 import Countdown from 'react-countdown';
@@ -12,6 +13,7 @@ import { untilToMinPrice } from "../Utils/dates";
 function TargetLow(props) {
     const { tillMorning, setTillMorning, priceData  } = props;
 
+ /*   useEffect(() => { console.log("TargetLow")}, [priceData]);*/
     // Renderer callback with condition
     const renderer = ({ hours, minutes, seconds }) => {
         // Render a countdown
@@ -35,7 +37,7 @@ function TargetLow(props) {
             <Row >
                 <Col className="text-center p-1">
                     {/*{<Countdown date={Date.now() + 60000 * 60} renderer={renderer} />}*/}
-                    < Countdown date={untilToMinPrice(priceData)} renderer={renderer} />
+                    < Countdown date={untilToMinPrice(priceData)} renderer={renderer} autoStart={true} key={(priceData) && priceData.length > 0 ?  priceData[0].timestamp: 0} />
                 </Col>
             </Row>
         </>

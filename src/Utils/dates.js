@@ -12,19 +12,33 @@ export const currentTimeStamp = () => moment().minutes(0).seconds(0).unix();
 
 export const untilToMinPrice = (priceData) => {
 
-    const curTimeStamp = currentTimeStamp();
-    if (!priceData) {
+    const curTimeStamp = currentTimeStamp() ;
 
-        return Date.now() + 60000 * 60;
+
+    //console.log("priceData", priceData);
+  
+    const curDate = moment(curTimeStamp *1000 );
+  
+    if (!priceData || priceData.length ===0) {
+        console.log("curDate", curDate.valueOf());
+        return curDate.valueOf();
     }
 
     const min = priceData.reduce(function (prev, curr) {
-        return prev.timestamp >= curTimeStamp && prev.price < curr.price ? prev : curr;
-    });
-    const minDate = moment(min.timestamp * 1000);
-    const curDate = moment(curTimeStamp * 1000);
+        return curr.timestamp >= curTimeStamp && prev.price > curr.price ? curr : prev;
+    } );
+    const minDate = moment(min.timestamp *1000);
+   
 
-    return curTimeStamp * 1000 + minDate.diff(curDate);
+    const until = curDate.valueOf() + (minDate.diff(curDate).valueOf());
+  
+    if (!until) {
+        //console.log("until curDate", curDate.valueOf());
+        return curDate.valueOf();
+    }
+
+    //console.log("until", until.valueOf());
+    return until.valueOf();
 };
 
 
