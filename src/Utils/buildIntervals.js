@@ -1,4 +1,3 @@
-import { interval } from "d3-timer";
 import moment from "moment";
 
 import lodash from "lodash";
@@ -15,30 +14,31 @@ export const getLowPriceInterval = (data, interval) => {
     const futureData = removePast(data);
 
     futureData.forEach((_, i) => {
-        const dataInterval = futureData.slice(i, interval + i + 1);
+        console.log(interval + i +1);
+        const dataInterval = futureData.slice(i, interval + i +1);
 
-        //console.log("dataInterval", dataInterval, "interval", interval);
+       
         if (dataInterval.length < interval) {
             //console.log("return");
             return;
         }
-        
+        console.log("dataInterval", dataInterval, "interval", interval);
      /*   console.log("take", lodash.take(dataInterval, interval));*/
 
-        const sumInterval = lodash.take(dataInterval, interval).reduce((acc, { price }, i) => {
+        const sumInterval = lodash.take(dataInterval, interval).reduce((acc, { price }) => {
             return acc + parseFloat(price);
         }, 0);
 
         //const sumInterval = lodash.sum(dataInterval.map(({ price }) => price));
-       
+        console.log("sumInterval", sumInterval);
         if (minimum > sumInterval) {
             minimum = sumInterval;
             result = dataInterval;
         }
 
     });
-    //console.log("result", result);
-    return result.map((r, i) => {
+    console.log("result", result);
+    return result.map((r) => {
         return {
             ...r, index: data.findIndex(({ timestamp }) => timestamp === r.timestamp),
         };
