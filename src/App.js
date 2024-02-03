@@ -12,7 +12,7 @@ import LeftSideBar from "./LeftSideBar";
 function App() {
   const [activePrice, setActivePrice] = useState(DEFAULT_ACTIVE_BUTTON);
   const [tillMorning, setTillMorning] = useState(0);
-  const [activeHour, setActiveHour] = useState();
+  const [activeHour, setActiveHour] = useState(1);
   const [from, setFrom] = useState(getDefaultFrom());
   const [until, setUntil] = useState(getDefaultUntil());
   const [showSideBar, setShowSideBar] = useState(false);
