@@ -184,12 +184,6 @@ function Body({ from, until, activeHour }) {
         else {
             return null;
         }
-        //return timestamp === currentTimeStamp() ? (
-        //    <>
-        //        <Dot key="1" {...line}  />
-              
-        //    </>
-        //) : null;
     };
 
     const [priceData, setPriceData] = useState([]);
@@ -209,8 +203,6 @@ function Body({ from, until, activeHour }) {
         if (lowPriceIntervals.length) {
             setX1(lowPriceIntervals[0].index);
             setX2(lodash.last(lowPriceIntervals).index);
-            console.log("x1", lowPriceIntervals[0].index, "x2", lodash.last(lowPriceIntervals).index);
-
         }
     }, [priceData, activeHour]);
 
