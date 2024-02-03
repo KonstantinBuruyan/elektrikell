@@ -24,8 +24,8 @@ function TargetLow(props) {
                 <Col><Intervals {...props} /></Col>
             </Row>
             <Row>
-                <Col>
-                <Countdown date={countDownDate}>
+                <Col className="text-center p-1">
+                    <Countdown date={countDownDate} className="fs-1 fw-semibold">
                 <div>This time is now!</div>
                 </Countdown>
                 </Col>
