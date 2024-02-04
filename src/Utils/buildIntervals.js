@@ -40,3 +40,8 @@ export const getLowPriceInterval = (data, interval) => {
 
     });
 };
+
+export const getAveragePrice = sumInterval => {
+    
+    return lodash.round(lodash.meanBy(sumInterval, p => parseFloat(p.price)), 2).toFixed(2);
+}
