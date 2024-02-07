@@ -1,23 +1,28 @@
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
+
 import "../App.scss";
 import Intervals from "./Intervals";
 import Countdown from "react-countdown";
+
 import { addHourToCurrentTSML } from '../Utils/dates';
 
 
 function TargetLow(props) {
-    const {tillMorning,setTillMorning} = props;
-    const countDownDate= addHourToCurrentTSML();
+ 
+    const { bestUntill} = props;
+
+
+
+
 
     return (
         <>
             <Row className="durations">
                 <Col style={{"textAlign":"center"}}>
                 <span className="durations_title">Tahan tarbida </span>
-                    {/* <Button active={tillMorning} onClick={() => setTillMorning(!tillMorning)} variant="secondary">enne hommikut</Button> */}
+                  
                 </Col>
             </Row >
             <Row>
@@ -25,9 +30,10 @@ function TargetLow(props) {
             </Row>
             <Row>
                 <Col className="text-center p-1">
-                    <Countdown date={countDownDate} className="fs-1 fw-semibold">
+                    {bestUntill && ( <Countdown date={bestUntill *1000} className="fs-1 fw-semibold">
                 <div>This time is now!</div>
-                </Countdown>
+                </Countdown>)}
+                   
                 </Col>
             </Row>
         </>
