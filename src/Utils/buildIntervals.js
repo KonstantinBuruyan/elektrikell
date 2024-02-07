@@ -1,10 +1,9 @@
-import moment from "moment";
-
 import lodash from "lodash";
+import { currentTimeStamp } from "./dates";
 
 export const removePast = (data) => {
     return data.filter(({ timestamp }) => {
-        return moment.unix(timestamp).isAfter(moment());
+        return timestamp >= currentTimeStamp();
     });
 };
 
@@ -35,7 +34,7 @@ export const getLowPriceInterval = (data, interval) => {
    
     return result.map((r) => {
         return {
-            ...r, index: data.findIndex(({ timestamp }) => timestamp === r.timestamp),
+            ...r, position: data.findIndex(({ timestamp }) => timestamp === r.timestamp),
         };
 
     });
