@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { getPriceData } from "../services/apiService";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Line, ResponsiveContainer, Dot, ReferenceArea } from 'recharts';
+import { LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Line, ResponsiveContainer, Dot, ReferenceArea, ReferenceLine } from 'recharts';
 import { chartDataConvertor } from "../Utils";
 import { currentTimeStamp } from "../Utils/dates";
 import { getLowPriceInterval } from "../Utils/buildIntervals";
 import lodash from "lodash";
+import { getAveragePice } from "../Utils/math";
 
 
 const priceData = {
@@ -219,6 +220,7 @@ function Body({ from, until, activeHour }) {
                         <Tooltip />
                         <Line type="stepAfter" dataKey="price" stroke="#8884d8" dot={renderDot} />
                         <ReferenceArea x1={x1} x2={x2} stroke="red" strokeOpacity={0.3} />
+                        <ReferenceLine y={getAveragePice(priceData)} label="Average" stroke="grey" strokeDasharray="3 3"/>
 
                     </LineChart>
                 </ResponsiveContainer>
