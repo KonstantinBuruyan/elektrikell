@@ -76,7 +76,7 @@ function Body({ from, until, activeHour, setErrorMessage, setBestUntill, setData
         if (lowPriceIntervals.length) {
             
             setX1(lowPriceIntervals[0].position);
-            setX2(lodash.last(lowPriceIntervals).position);
+            setX2(lodash.last(lowPriceIntervals).position+1);
             setBestUntill(lowPriceIntervals[0].timestamp);
         }
     }, [priceData, activeHour, setBestUntill, setDataLoaded]);
