@@ -26,7 +26,7 @@ function App() {
     const handleOpenSideBar = () => setShowSideBar(true);
 
     return (
-        <>
+       
 
             <Container >
                 <Loading dataLoaded={dataLoaded} />
@@ -39,7 +39,7 @@ function App() {
                 <ErrorModal show={!!errorMessage} handleClose={() => setErrorMessage(null)} errorMessage={errorMessage} />
 
             </Container>
-        </>
+       
     );
 }
 

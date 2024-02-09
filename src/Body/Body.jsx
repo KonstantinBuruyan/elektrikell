@@ -63,16 +63,18 @@ function Body({ from, until, activeHour, setErrorMessage, setBestUntill, setData
             const priceData = chartDataConvertor(data.ee);
 
             setPriceData(priceData);
-            setDataLoaded(true);
-        }).catch(error => setErrorMessage(ERROR_MESSAGE));
+          
+        }).catch(error => setErrorMessage(ERROR_MESSAGE))
+        .finally(()=>   setDataLoaded(true));
     }, [from, until, setDataLoaded, setErrorMessage]);
 
 
     useEffect(() => {
 
         const lowPriceIntervals = getLowPriceInterval(priceData, activeHour);
+        setDataLoaded(true);
         if (lowPriceIntervals.length) {
-            setDataLoaded(true);
+            
             setX1(lowPriceIntervals[0].position);
             setX2(lodash.last(lowPriceIntervals).position);
             setBestUntill(lowPriceIntervals[0].timestamp);
