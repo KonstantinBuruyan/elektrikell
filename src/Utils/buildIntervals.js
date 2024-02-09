@@ -1,4 +1,4 @@
-import lodash from "lodash";
+
 import { currentTimeStamp } from "./dates";
 
 export const removePast = (data) => {
@@ -14,14 +14,14 @@ export const getLowPriceInterval = (data, interval) => {
 
     futureData.forEach((_, i) => {
         
-        const dataInterval = futureData.slice(i, interval + i +1);
+        const dataInterval = futureData.slice(i, interval + i );
 
        
-        if (dataInterval.length < interval +1) {
+        if (dataInterval.length < interval ) {
             return;
         }
 
-        const sumInterval = lodash.take(dataInterval, interval).reduce((acc, { price }) => {
+        const sumInterval = dataInterval.reduce((acc, { price }) => {
             return acc + parseFloat(price);
         }, 0);
 
