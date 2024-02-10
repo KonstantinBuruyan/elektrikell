@@ -5,7 +5,7 @@ import { PRICE_BUTTONS, BADGES } from "./constants";
 import Badge from 'react-bootstrap/Badge';
 import { useEffect, useState } from 'react';
 import { getCurrentPrice } from '../services/apiService';
-import { mwToKw, addTax } from '../Utils/priceFormats';
+import { mwToKw } from '../Utils/priceFormats';
 import {ERROR_MESSAGE} from "./constants";
 
 function Info({ activePrice, setActivePrice, setErrorMessage }) {
@@ -18,7 +18,7 @@ function Info({ activePrice, setActivePrice, setErrorMessage }) {
 
                 if(!success) throw new Error();
 
-                setCurrentPrice(addTax(mwToKw(data[0].price), "ee"));
+                setCurrentPrice(mwToKw(data[0].price));
             }
             catch  {
                 setErrorMessage(ERROR_MESSAGE);

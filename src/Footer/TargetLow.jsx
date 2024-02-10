@@ -5,15 +5,23 @@ import Col from 'react-bootstrap/Col';
 import "../App.scss";
 import Intervals from "./Intervals";
 import Countdown from "react-countdown";
+import { useRef, useEffect } from "react";
 
-import { addHourToCurrentTSML } from '../Utils/dates';
 
 
 function TargetLow(props) {
 
     const { bestUntill } = props;
 
+    const countdownRef = useRef(null);
 
+    useEffect(() => {
+       
+        if (bestUntill && countdownRef.current) {
+            countdownRef.current.start();
+        }
+
+    }, [bestUntill]);
 
 
 
@@ -30,7 +38,8 @@ function TargetLow(props) {
             </Row>
             <Row>
                 <Col className="text-center p-1">
-                    {bestUntill && (<Countdown date={bestUntill * 1000} className="fs-1 fw-semibold">
+                    {/*<div>The best time for this is {props.countdownDataContext.bestTime}, which is left</div>*/}
+                    {bestUntill && (<Countdown date={bestUntill * 1000} ref={countdownRef} autoStart={false} className="fs-1 fw-semibold" >
                         <div>This time is now!</div>
                     </Countdown>)}
 

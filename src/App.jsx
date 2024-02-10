@@ -2,7 +2,6 @@ import { Routes, Route } from "react-router-dom";
 import ElektricPrice from "./ElektricPrice";
 import About from "./About/About";
 import Navigation from "./Navigation";
-import ErrorModal from "./ErrorModal";
 
 function App() {
     return (
