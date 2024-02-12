@@ -1,5 +1,8 @@
 import { useEffect } from "react";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
+import  Me  from "./Me";
+import  Gamma  from "./Gamma";
+
 
 function About() {
     const location = useLocation();
@@ -10,9 +13,15 @@ function About() {
         if (params.id === "999") navigate("/");
     }, [params, navigate]);
 
-    console.log(params);
+    //console.log(params);
 
-    return <>About component</>
+    //return <>About component</>
+
+    return (
+        <>
+            {params.name === "gamma" ?<Gamma/> :  <Me/>}
+        </>
+    );
 }
 
 export default About;
