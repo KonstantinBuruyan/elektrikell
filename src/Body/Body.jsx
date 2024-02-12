@@ -9,10 +9,14 @@ import lodash from "lodash";
 import { getAveragePice } from "../Utils/math";
 import { ERROR_MESSAGE } from "./constants";
 import { RenderDots, RenderTooltip, RenderTick }  from "./Chart";
+import { useSelector } from 'react-redux';
 
 
 
-function Body({ from, until, activeHour, setErrorMessage, setBestUntill, setDataLoaded }) {
+
+function Body({ setErrorMessage, setBestUntill, setDataLoaded }) {
+
+    const activeHour = useSelector((state)=> state.main.activeHour);
 
     const [priceData, setPriceData] = useState([]);
     const [x1, setX1] = useState(0);
@@ -22,6 +26,9 @@ function Body({ from, until, activeHour, setErrorMessage, setBestUntill, setData
         return getAveragePice(priceData);
 
     }, [priceData]);
+
+    const from = useSelector((state) => state.date.from);
+    const until = useSelector((state) => state.date.until);
 
     useEffect(() => {
         getPriceData(from, until).then(({ data, success }) => {

@@ -7,9 +7,14 @@ import { useEffect, useState } from 'react';
 import { getCurrentPrice } from '../services/apiService';
 import { mwToKw } from '../Utils/priceFormats';
 import {ERROR_MESSAGE} from "./constants";
+import { useSelector, useDispatch } from 'react-redux';
+import { setActivePrice } from '../services/stateService';
 
-function Info({ activePrice, setActivePrice, setErrorMessage }) {
+function Info({  setErrorMessage }) {
     const [currentPrice, setCurrentPrice] = useState(0);
+    const dispatch= useDispatch();
+
+    const activePrice = useSelector((state) => state.main.activePrice);
 
     useEffect(() => {
         (async () => {
@@ -34,7 +39,7 @@ function Info({ activePrice, setActivePrice, setErrorMessage }) {
         <Col>
             <ButtonGroup >
                 {PRICE_BUTTONS.map(({ name, id }) => (
-                    <Button key={id} active={activePrice === id} onClick={() => setActivePrice(id)} variant="secondary">{name}</Button>
+                    <Button key={id} active={activePrice === id} onClick={() => dispatch(setActivePrice(id))} variant="secondary">{name}</Button>
                 ))}
                 {/* <Button variant="secondary">Low price</Button>
       <Button variant="secondary">High price</Button> */}
