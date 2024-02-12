@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import { useLocation, useParams, useNavigate } from "react-router-dom";
+import {  useParams, useNavigate } from "react-router-dom";
 import  Me  from "./Me";
 import  Gamma  from "./Gamma";
 
 
 function About() {
-    const location = useLocation();
+    // const location = useLocation();
     const params = useParams();
     const navigate = useNavigate();
     

@@ -1,6 +1,6 @@
 
 import { currentTimeStamp } from "./dates";
-import moment from 'moment';
+
 
 export const removePast = (data) => {
     return data.filter(({ timestamp }) => {
