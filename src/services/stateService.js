@@ -30,7 +30,7 @@ const dateSlice = createSlice({
             state.from = action.payload;
         },
         setUntil: (state, action) => {
-            state.unti = action.payload;
+            state.until = action.payload;
         }
     }
 });

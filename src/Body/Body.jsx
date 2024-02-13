@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from "react";
-import { getPriceData } from "../services/apiService";
+import { getPriceData } from "../services";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Line, ResponsiveContainer, ReferenceArea, ReferenceLine } from 'recharts';
@@ -8,7 +8,7 @@ import { getLowPriceInterval } from "../Utils/buildIntervals";
 import lodash from "lodash";
 import { getAveragePice } from "../Utils/math";
 import { ERROR_MESSAGE } from "./constants";
-import { RenderDots, RenderTooltip, RenderTick }  from "./Chart";
+import { RenderDots, RenderTooltip, RenderTick } from "./Chart";
 import { useSelector } from 'react-redux';
 
 
@@ -16,7 +16,7 @@ import { useSelector } from 'react-redux';
 
 function Body({ setErrorMessage, setBestUntill, setDataLoaded }) {
 
-    const activeHour = useSelector((state)=> state.main.activeHour);
+    const activeHour = useSelector((state) => state.main.activeHour);
 
     const [priceData, setPriceData] = useState([]);
     const [x1, setX1] = useState(0);
@@ -29,17 +29,22 @@ function Body({ setErrorMessage, setBestUntill, setDataLoaded }) {
 
     const from = useSelector((state) => state.date.from);
     const until = useSelector((state) => state.date.until);
-
+    console.log("body from", from, "until", until);
     useEffect(() => {
         getPriceData(from, until).then(({ data, success }) => {
 
             if (!success) throw new Error();
 
             const priceData = chartDataConvertor(data.ee);
+            console.log("getPriceData", priceData, "sucess", success, "from", from, "until", until);
 
             setPriceData(priceData);
 
-        }).catch(error => setErrorMessage(ERROR_MESSAGE))
+        }).catch(error => {
+
+            console.log(error);
+            return setErrorMessage(ERROR_MESSAGE);
+        })
             .finally(() => setDataLoaded(true));
     }, [from, until, setDataLoaded, setErrorMessage]);
 

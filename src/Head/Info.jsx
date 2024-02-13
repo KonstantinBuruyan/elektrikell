@@ -4,28 +4,28 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { PRICE_BUTTONS, BADGES } from "./constants";
 import Badge from 'react-bootstrap/Badge';
 import { useEffect, useState } from 'react';
-import { getCurrentPrice } from '../services/apiService';
+import { getCurrentPrice, setActivePrice } from '../services';
 import { mwToKw } from '../Utils/priceFormats';
-import {ERROR_MESSAGE} from "./constants";
+import { ERROR_MESSAGE } from "./constants";
 import { useSelector, useDispatch } from 'react-redux';
-import { setActivePrice } from '../services/stateService';
 
-function Info({  setErrorMessage }) {
+
+function Info({ setErrorMessage }) {
     const [currentPrice, setCurrentPrice] = useState(0);
-    const dispatch= useDispatch();
+    const dispatch = useDispatch();
 
     const activePrice = useSelector((state) => state.main.activePrice);
 
     useEffect(() => {
         (async () => {
             try {
-                const { data , success} = await getCurrentPrice();
+                const { data, success } = await getCurrentPrice();
 
-                if(!success) throw new Error();
+                if (!success) throw new Error();
 
                 setCurrentPrice(mwToKw(data[0].price));
             }
-            catch  {
+            catch {
                 setErrorMessage(ERROR_MESSAGE);
             }
         })()

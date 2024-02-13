@@ -4,17 +4,17 @@ import Button from 'react-bootstrap/Button';
 import Stack from 'react-bootstrap/Stack';
 import { INTERVALS } from './constants';
 import { useSelector, useDispatch } from 'react-redux';
-import { setActiveHour } from '../services/stateService';
+import { setActiveHour } from '../services';
 
 function Intervals() {
     const dispatch = useDispatch();
-    const activeHour = useSelector((state)=> state.main.activeHour);
+    const activeHour = useSelector((state) => state.main.activeHour);
     return (
         <Row>
             <Col>
                 <Stack direction="horizontal" gap={3} className='justify-content-center'>
                     {INTERVALS.map(({ id, name }) => (
-                        <Button key={id} variant="outline-warning" active={(activeHour || 1) === id} onClick={ ()=> dispatch(setActiveHour(id))}>{name}</Button>
+                        <Button key={id} variant="outline-warning" active={(activeHour || 1) === id} onClick={() => dispatch(setActiveHour(id))}>{name}</Button>
                     )
 
                     )}

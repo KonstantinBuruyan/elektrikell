@@ -2,7 +2,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { convertToInputFormat, convertToRequestFormat } from "../Utils/dates";
 import { useSelector, useDispatch } from 'react-redux';
-import { setFrom, setUntil } from '../services/stateService';
+import { setFrom, setUntil } from '../services';
 
 function SearchForm({ handleClose }) {
     const dispatch = useDispatch();
@@ -11,11 +11,11 @@ function SearchForm({ handleClose }) {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        const from = event.target.from.value;
-        const until = event.target.until.value;
+        const start = event.target.from.value;
+        const end = event.target.until.value;
 
-        dispatch(setFrom(convertToRequestFormat(from)));
-        dispatch(setUntil(convertToRequestFormat(until)));
+        dispatch(setFrom(convertToRequestFormat(start)));
+        dispatch(setUntil(convertToRequestFormat(end)));
 
         handleClose();
     };
