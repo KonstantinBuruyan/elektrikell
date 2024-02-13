@@ -28,7 +28,7 @@ function TargetLow(props) {
     return (
         <>
             <Row className="durations">
-                <Col style={{ "textAlign": "center" }}>
+                <Col className="text-center">
                     <span className="durations_title">Tahan tarbida </span>
 
                 </Col>
