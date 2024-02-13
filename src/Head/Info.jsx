@@ -4,13 +4,13 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { PRICE_BUTTONS, BADGES } from "./constants";
 import Badge from 'react-bootstrap/Badge';
 import { useEffect, useState } from 'react';
-import { getCurrentPrice, setActivePrice } from '../services';
+import { getCurrentPrice, setActivePrice, setErrorMessage } from '../services';
 import { mwToKw } from '../Utils/priceFormats';
 import { ERROR_MESSAGE } from "./constants";
 import { useSelector, useDispatch } from 'react-redux';
 
 
-function Info({ setErrorMessage }) {
+function Info() {
     const [currentPrice, setCurrentPrice] = useState(0);
     const dispatch = useDispatch();
 
@@ -26,10 +26,10 @@ function Info({ setErrorMessage }) {
                 setCurrentPrice(mwToKw(data[0].price));
             }
             catch {
-                setErrorMessage(ERROR_MESSAGE);
+                dispatch(setErrorMessage(ERROR_MESSAGE));
             }
         })()
-    }, [setErrorMessage]);
+    }, [dispatch]);
     return (<>
         <Col>
             <div>The current price of electricity is</div>

@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from "react";
-import { getPriceData } from "../services";
+import { getPriceData, setErrorMessage, setBestUntil, setIsDataLoaded } from "../services";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Line, ResponsiveContainer, ReferenceArea, ReferenceLine } from 'recharts';
@@ -9,19 +9,20 @@ import lodash from "lodash";
 import { getAveragePice } from "../Utils/math";
 import { ERROR_MESSAGE } from "./constants";
 import { RenderDots, RenderTooltip, RenderTick } from "./Chart";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 
+function Body() {
 
-
-function Body({ setErrorMessage, setBestUntill, setDataLoaded }) {
-
+   
     const activeHour = useSelector((state) => state.main.activeHour);
 
     const [priceData, setPriceData] = useState([]);
     const [x1, setX1] = useState(0);
     const [x2, setX2] = useState(0);
+    const dispatch = useDispatch();
 
+    
     const averagePrice = useMemo(() => {
         return getAveragePice(priceData);
 
@@ -29,37 +30,38 @@ function Body({ setErrorMessage, setBestUntill, setDataLoaded }) {
 
     const from = useSelector((state) => state.date.from);
     const until = useSelector((state) => state.date.until);
-    console.log("body from", from, "until", until);
+
     useEffect(() => {
+        dispatch(setIsDataLoaded(false));
         getPriceData(from, until).then(({ data, success }) => {
+
 
             if (!success) throw new Error();
 
             const priceData = chartDataConvertor(data.ee);
-            console.log("getPriceData", priceData, "sucess", success, "from", from, "until", until);
 
             setPriceData(priceData);
 
         }).catch(error => {
 
             console.log(error);
-            return setErrorMessage(ERROR_MESSAGE);
+            return dispatch(setErrorMessage(ERROR_MESSAGE));
         })
-            .finally(() => setDataLoaded(true));
-    }, [from, until, setDataLoaded, setErrorMessage]);
+            .finally(() => dispatch(setIsDataLoaded(true)) );
+    }, [from, until, dispatch]);
 
 
     useEffect(() => {
-
+        dispatch(setIsDataLoaded(false));
         const lowPriceIntervals = getLowPriceInterval(priceData, activeHour);
-        setDataLoaded(true);
+        dispatch(setIsDataLoaded(true));
         if (lowPriceIntervals.length) {
 
             setX1(lowPriceIntervals[0].position);
             setX2(lodash.last(lowPriceIntervals).position + 1);
-            setBestUntill(lowPriceIntervals[0].timestamp);
+            dispatch(setBestUntil(lowPriceIntervals[0].timestamp));
         }
-    }, [priceData, activeHour, setBestUntill, setDataLoaded]);
+    }, [priceData, activeHour, dispatch]);
 
 
     return (

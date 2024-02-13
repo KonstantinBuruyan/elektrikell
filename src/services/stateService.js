@@ -1,6 +1,11 @@
 import { createAction, createReducer, configureStore, createSlice } from "@reduxjs/toolkit";
 import { DEFAULT_ACTIVE_BUTTON } from "../Head/constants";
 import { getDefaultFrom, getDefaultUntil } from "../Utils/dates";
+import { errorSlice } from "./errorMessageSlice";
+import { sideBarSlice } from "./showSideBarSlice";
+import { bestUntilSlice } from "./bestUntilSlice";
+import { dataLoadedSlice } from "./isDataLoadedSlice";
+
 
 const initialState = {
     activePrice: DEFAULT_ACTIVE_BUTTON,
@@ -38,5 +43,5 @@ const dateSlice = createSlice({
 export const { setFrom, setUntil } = dateSlice.actions;
 
 export const store = configureStore({
-    reducer: { main, date: dateSlice.reducer },
+    reducer: { main, date: dateSlice.reducer, error: errorSlice.reducer, sideBar: sideBarSlice.reducer, best: bestUntilSlice.reducer, isDataLoaded: dataLoadedSlice.reducer, },
 });

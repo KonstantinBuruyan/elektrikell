@@ -6,13 +6,13 @@ import "../App.scss";
 import Intervals from "./Intervals";
 import Countdown from "react-countdown";
 import { useRef, useEffect } from "react";
-
+import { useSelector } from 'react-redux';
 
 
 function TargetLow(props) {
 
-    const { bestUntill } = props;
 
+    const bestUntill = useSelector((state) => state.best.bestUntill);
     const countdownRef = useRef(null);
 
     useEffect(() => {

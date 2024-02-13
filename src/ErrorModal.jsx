@@ -1,9 +1,12 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-
-function ErrorModal({ show, handleClose , errorMessage}) {
+import { useSelector, useDispatch } from 'react-redux';
+import { setErrorMessage } from "./services";
+function ErrorModal({ show, handleClose }) {
+    const errorMessage = useSelector((state) => state.error.errorMessage);
+    const dispatch = useDispatch();
     return (
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={!!errorMessage} onHide={handleClose}>
            
                 <Modal.Header closeButton>
                     <Modal.Title>Error</Modal.Title>
@@ -14,7 +17,7 @@ function ErrorModal({ show, handleClose , errorMessage}) {
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>Close</Button>
+                <Button variant="secondary" onClick={() => dispatch( setErrorMessage(null))}>Close</Button>
                 </Modal.Footer>
            
         </Modal>

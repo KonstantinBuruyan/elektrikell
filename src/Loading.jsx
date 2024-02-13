@@ -1,9 +1,12 @@
 import Spinner from 'react-bootstrap/Spinner';
 import Row from 'react-bootstrap/Row';
-function Loading({ dataLoaded }) {
+import { useSelector } from 'react-redux';
+function Loading() {
+
+    const isDataLoaded = useSelector((state) => state.isDataLoaded.isDataLoaded);
 
     const visibilyty = () => {
-        return dataLoaded ? "collapse" : "text-center vh-100 align-items-center"
+        return isDataLoaded ? "collapse" : "text-center vh-100 align-items-center"
     }
     return (
         < >

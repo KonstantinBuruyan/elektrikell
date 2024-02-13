@@ -7,14 +7,14 @@ import Col from 'react-bootstrap/Col';
 
 
 function Head(props) {
-    const {handleOpenSideBar, ...restProps} = props;
+    const { handleOpenSideBar } = props;
 
     return (<>
         <Row className="align-items-center" >
-            <Col md="auto" ><Logo  handleOpenSideBar={handleOpenSideBar}/></Col>
+            <Col md="auto" ><Logo handleOpenSideBar={handleOpenSideBar} /></Col>
         </Row>
         <Row>
-            <Info {...restProps} />
+            <Info />
         </Row>
     </>)
 }

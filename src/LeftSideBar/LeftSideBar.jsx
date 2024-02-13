@@ -1,9 +1,11 @@
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import SearchForm from './SearchForm';
+import { useSelector } from 'react-redux';
 
 
-function LeftSideBar({show, handleClose, ...formProps }) {
-    
+function LeftSideBar({ handleClose, ...formProps }) {
+
+    const show = useSelector((state) => state.sideBar.showSideBar);
     return (
 
         <Offcanvas show={show} onHide={handleClose} >
