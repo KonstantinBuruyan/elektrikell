@@ -6,7 +6,7 @@ import { DEFAULT_ACTIVE_BUTTON } from "../Head";
 import { useSelector } from 'react-redux';
 
 
-function Footer({  tillMorning, setTillMorning ,bestUntill}) {
+function Footer() {
 
     const activePrice = useSelector((state) => state.main.activePrice);
 
@@ -16,7 +16,7 @@ function Footer({  tillMorning, setTillMorning ,bestUntill}) {
             {
                 activePrice === DEFAULT_ACTIVE_BUTTON
                     ?
-                    <Col><TargetLow bestUntill={bestUntill}/></Col>
+                    <Col><TargetLow /></Col>
                     :
                     <Col><TargetHigh /></Col>
 
