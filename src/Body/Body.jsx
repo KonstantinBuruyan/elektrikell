@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useContext } from "react";
 import { getPriceData, setErrorMessage, setBestUntil, setIsDataLoaded } from "../services";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -10,11 +10,12 @@ import { getAveragePice } from "../Utils/math";
 import { ERROR_MESSAGE } from "./constants";
 import { RenderDots, RenderTooltip, RenderTick } from "./Chart";
 import { useSelector, useDispatch } from 'react-redux';
+import { ElektricPriceContext } from "../contexts/ElektricPriceContext";
 
 
 function Body() {
 
-   
+
     const activeHour = useSelector((state) => state.main.activeHour);
 
     const [priceData, setPriceData] = useState([]);
@@ -22,11 +23,7 @@ function Body() {
     const [x2, setX2] = useState(0);
     const dispatch = useDispatch();
 
-    
-    const averagePrice = useMemo(() => {
-        return getAveragePice(priceData);
-
-    }, [priceData]);
+    const { values, actions } = useContext(ElektricPriceContext);
 
     const from = useSelector((state) => state.date.from);
     const until = useSelector((state) => state.date.until);
@@ -42,13 +39,15 @@ function Body() {
 
             setPriceData(priceData);
 
+            actions.setAveragePrice(getAveragePice(priceData));
+
         }).catch(error => {
 
             console.log(error);
             return dispatch(setErrorMessage(ERROR_MESSAGE));
         })
-            .finally(() => dispatch(setIsDataLoaded(true)) );
-    }, [from, until, dispatch]);
+            .finally(() => dispatch(setIsDataLoaded(true)));
+    }, [from, until, dispatch, actions]);
 
 
     useEffect(() => {
@@ -62,6 +61,7 @@ function Body() {
             dispatch(setBestUntil(lowPriceIntervals[0].timestamp));
         }
     }, [priceData, activeHour, dispatch]);
+
 
 
     return (
@@ -78,7 +78,7 @@ function Body() {
                         <Tooltip content={<RenderTooltip />} />
                         <Line type="stepAfter" dataKey="price" stroke="#8884d8" dot={<RenderDots />} />
                         <ReferenceArea x1={x1} x2={x2} stroke="red" strokeOpacity={0.3} />
-                        <ReferenceLine y={averagePrice} label="Average" stroke="grey" strokeDasharray="3 3" />
+                        <ReferenceLine y={values.averagePrice} label="Average" stroke="grey" strokeDasharray="3 3" />
 
                     </LineChart>
                 </ResponsiveContainer>

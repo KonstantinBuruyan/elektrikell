@@ -10,6 +10,7 @@ import Loading from "./Loading";
 import { useParams } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { setActiveHour, setShowSideBar } from './services';
+import ElektricPriceProvider from "./contexts/ElektricPriceContext";
 
 
 
@@ -20,7 +21,7 @@ function ElektricPrice() {
     const dispatch = useDispatch();
 
     const handleCloseSideBar = () => dispatch(setShowSideBar(false));
-    const handleOpenSideBar = () => dispatch( setShowSideBar(true));
+    const handleOpenSideBar = () => dispatch(setShowSideBar(true));
 
     useEffect(() => {
         if (params.hours) dispatch(setActiveHour(+params.hours));
@@ -28,17 +29,17 @@ function ElektricPrice() {
 
     return (
 
+        <ElektricPriceProvider>
+            <Container >
+                <Loading />
+                <Head handleClose={handleCloseSideBar} handleOpenSideBar={handleOpenSideBar} />
+                <Body />
+                <Footer style={{ backgroundColor: "#f3f5fd" }} />
+                <LeftSideBar handleClose={handleCloseSideBar} />
+                <ErrorModal />
 
-        <Container >
-            <Loading />
-            <Head handleClose={handleCloseSideBar} handleOpenSideBar={handleOpenSideBar} />
-            <Body />
-            <Footer style={{ backgroundColor: "#f3f5fd" }} />
-            <LeftSideBar handleClose={handleCloseSideBar} />
-            <ErrorModal  />
-
-        </Container>
-
+            </Container>
+        </ElektricPriceProvider>
     );
 }
 
