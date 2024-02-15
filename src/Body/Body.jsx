@@ -76,7 +76,7 @@ function Body() {
                         <XAxis xAxisId="2" dataKey="timestamp" hide={true} />
                         <YAxis />
                         <Tooltip content={<RenderTooltip />} />
-                        <Line type="stepAfter" dataKey="price" stroke="#8884d8" dot={<RenderDots />} />
+                        <Line type="stepAfter" dataKey="price" stroke="#8884d8" dot={<RenderDots />} strokeWidth="2"/>
                         <ReferenceArea x1={x1} x2={x2} stroke="red" strokeOpacity={0.3} />
                         <ReferenceLine y={values.averagePrice} label="Average" stroke="grey" strokeDasharray="3 3" />
 
