@@ -1,14 +1,21 @@
 export const LOW = "low";
 export const HIGH = "High";
-export const SUCCESS = "success"
+export const AVERAGE = "Average";
+export const SUCCESS = "success";
+export const PRIMARY = "primary";
+export const DANGER = "danger";
 
 export const BADGES = [
     {
-        name: "success",
+        name: SUCCESS,
         id: LOW,
     },
     {
-        name: "danger",
+        name: PRIMARY,
+        id: AVERAGE,
+    },
+    {
+        name: DANGER,
         id: HIGH,
     }
 ];
