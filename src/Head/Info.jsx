@@ -14,7 +14,7 @@ function Info() {
    
     const dispatch = useDispatch();
 
-    const { values, actions } = useContext(ElektricPriceContext);
+    const { values, actions:{setCurrentPrice} } = useContext(ElektricPriceContext);
 
     const activePrice = useSelector((state) => state.main.activePrice);
     
@@ -26,13 +26,13 @@ function Info() {
 
                 if (!success) throw new Error();
 
-                actions.setCurrentPrice(mwToKw(data[0].price));
+                setCurrentPrice(mwToKw(data[0].price));
             }
             catch {
                 dispatch(setErrorMessage(ERROR_MESSAGE));
             }
         })()
-    }, [dispatch, actions]);
+    }, [dispatch, setCurrentPrice]);
 
       return (<>
         <Col>

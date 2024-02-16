@@ -23,7 +23,9 @@ function Body() {
     const [x2, setX2] = useState(0);
     const dispatch = useDispatch();
 
-    const { values, actions } = useContext(ElektricPriceContext);
+    const { values, actions: {setAveragePrice} } = useContext(ElektricPriceContext);
+
+
 
     const from = useSelector((state) => state.date.from);
     const until = useSelector((state) => state.date.until);
@@ -39,7 +41,7 @@ function Body() {
 
             setPriceData(priceData);
 
-            actions.setAveragePrice(getAveragePice(priceData));
+            setAveragePrice(getAveragePice(priceData));
 
         }).catch(error => {
 
@@ -47,7 +49,7 @@ function Body() {
             return dispatch(setErrorMessage(ERROR_MESSAGE));
         })
             .finally(() => dispatch(setIsDataLoaded(true)));
-    }, [from, until, dispatch, actions]);
+    }, [from, until, dispatch, setAveragePrice]);
 
 
     useEffect(() => {
