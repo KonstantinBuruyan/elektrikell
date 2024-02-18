@@ -20,7 +20,7 @@ function Me() {
                                         LinkedIn
                                     </dt>
                                     <dd className="mb4 t-black--light text-body-medium">
-                                        <a rel="noopener noreferrer" target="_blank" href="https://www.gammatest.net/" id="ember1616" className="link-without-visited-state ember-view">
+                                        <a rel="noopener noreferrer" target="_blank" href="https://www.linkedin.com/in/konstantin-buruyan-1b0273259/" id="ember1616" className="link-without-visited-state ember-view">
                                             <span className="link-without-visited-state" dir="ltr">
                                             https://www.linkedin.com/in/konstantin-buruyan-1b0273259/
                                             </span>

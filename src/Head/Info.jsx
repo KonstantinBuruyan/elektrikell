@@ -37,7 +37,7 @@ function Info() {
       return (<>
         <Col>
             <div>The current price of electricity is</div>
-           < BadgePrice {...values}/>
+              < BadgePrice currentPrice={values.currentPrice}/>
         </Col>
         <Col>
             <ButtonGroup >
