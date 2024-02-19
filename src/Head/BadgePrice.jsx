@@ -8,7 +8,7 @@ function BadgePrice({ currentPrice }) {
     const badge = useMemo(() => getBadge(currentPrice), [currentPrice]);
 
     function getBadge(currentPrice) {
-        console.log(currentPrice);
+        //console.log(currentPrice);
         // average price by default. if the price is equal to or above 10 cents
         const b = { name: BADGES[1].name, id: BADGES[1].id };
 

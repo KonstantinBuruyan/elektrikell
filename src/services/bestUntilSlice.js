@@ -6,11 +6,11 @@ const initialBestUntilState = {
 }
 
 export const bestUntilSlice = createSlice({
-    name: "bestUntill",
+    name: "bestUntil",
     initialState: initialBestUntilState,
     reducers: {
         setBestUntil: (state, action) => {
-            state.bestUntill = action.payload;
+            state.bestUntil = action.payload;
         },
     }
 });

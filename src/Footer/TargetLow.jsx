@@ -12,24 +12,23 @@ import { useSelector } from 'react-redux';
 function TargetLow(props) {
 
 
-    const bestUntill = useSelector((state) => state.best.bestUntill);
+    const bestUntil = useSelector((state) => state.best.bestUntil);
     const countdownRef = useRef(null);
 
+
     useEffect(() => {
-       
-        if (bestUntill && countdownRef.current) {
+
+        if (bestUntil && countdownRef?.current) {
             countdownRef.current.start();
         }
 
-    }, [bestUntill]);
-
-
+    }, [bestUntil]);
 
     return (
         <>
             <Row className="durations">
                 <Col className="text-center">
-                    <span className="durations_title">Tahan tarbida </span>
+                    <span className="durations_title">Want to consume</span>
 
                 </Col>
             </Row >
@@ -38,11 +37,21 @@ function TargetLow(props) {
             </Row>
             <Row>
                 <Col className="text-center p-1">
-                    {/*<div>The best time for this is {props.countdownDataContext.bestTime}, which is left</div>*/}
-                    {bestUntill && (<Countdown date={bestUntill * 1000} ref={countdownRef} autoStart={false} className="fs-1 fw-semibold" >
-                        <div>This time is now!</div>
-                    </Countdown>)}
-
+                    {bestUntil != null ?
+                        <>
+                            {bestUntil.isNow ?
+                                <>
+                                    <div>The best time for that</div>
+                                    <div className='fs-1 fw-semibold'>CURRENTLY</div>
+                                    <div>Later, all prices will be more expensive</div>
+                                </> :
+                                <>
+                                    <div>The best time for this is {bestUntil.bestTime}, which is left</div>
+                                    <Countdown date={bestUntil.countDownMS} ref={countdownRef} autoStart={false} className="fs-1 fw-semibold" daysInHours={true}></Countdown>
+                                    <div>Then the price per kilowatt hour will be {bestUntil.averagePrice} cents, which is {bestUntil.deltaPercent}% {bestUntil.isCheap ? "cheaper" : "more expensive"} than it is now</div>
+                                </>}
+                        </> : <div></div>
+                    }
                 </Col>
             </Row>
         </>

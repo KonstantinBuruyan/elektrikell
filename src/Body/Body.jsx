@@ -23,7 +23,7 @@ function Body() {
     const [x2, setX2] = useState(0);
     const dispatch = useDispatch();
 
-    const { values, actions: {setAveragePrice} } = useContext(ElektricPriceContext);
+    const { values, actions: { setAveragePrice } } = useContext(ElektricPriceContext);
 
 
 
@@ -56,11 +56,11 @@ function Body() {
         dispatch(setIsDataLoaded(false));
         const lowPriceIntervals = getLowPriceInterval(priceData, activeHour);
         dispatch(setIsDataLoaded(true));
-        if (lowPriceIntervals.length) {
+        if (lowPriceIntervals) {
 
-            setX1(lowPriceIntervals[0].position);
-            setX2(lodash.last(lowPriceIntervals).position + 1);
-            dispatch(setBestUntil(lowPriceIntervals[0].timestamp));
+            setX1(lowPriceIntervals.x1);
+            setX2(lowPriceIntervals.x2);
+            dispatch(setBestUntil(lowPriceIntervals));
         }
     }, [priceData, activeHour, dispatch]);
 
@@ -78,10 +78,9 @@ function Body() {
                         <XAxis xAxisId="2" dataKey="timestamp" hide={true} />
                         <YAxis />
                         <Tooltip content={<RenderTooltip />} />
-                        <Line type="stepAfter" dataKey="price" stroke="#8884d8" dot={<RenderDots />} strokeWidth="2"/>
-                        <ReferenceArea x1={x1} x2={x2} stroke="red" strokeOpacity={0.3} />
+                        <Line type="stepAfter" dataKey="price" stroke="#8884d8" dot={<RenderDots />} strokeWidth="2" />
+                        <ReferenceArea xAxisId="2" x1={x1} x2={x2} stroke="red" strokeOpacity={0.3} />
                         <ReferenceLine y={values.averagePrice} label="Average" stroke="grey" strokeDasharray="3 3" />
-
                     </LineChart>
                 </ResponsiveContainer>
             </Col>

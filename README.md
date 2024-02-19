@@ -47,11 +47,11 @@ This website is an analogue of the Estonian website [elektrikell.ee](https://ele
 <hr/>
 <br/>
 
-#### The row below &nbsp; ![img](https://i.ibb.co/H2R7pNd/aeg.png) &nbsp; shows the hours during which the cheapest electricity is available, and it changes when the button with the number of hours is clicked.
+#### The row below &nbsp; ![img](https://i.ibb.co/614q6ps/image.png) &nbsp; shows the hours during which the cheapest electricity is available, and it changes when the button with the number of hours is clicked.
 <hr/>
 <br/>
 
-#### In addition, there is also a timer &nbsp; ![img](https://i.ibb.co/v3CDVWW/image.png) &nbsp; that shows the remaining hours until the cheap energy mark.
+#### In addition, there is also a timer &nbsp; ![img](https://i.ibb.co/h7WbSTP/image.png) &nbsp; that shows the remaining hours until the cheap energy mark.
 
 <br/>
 <hr/>
